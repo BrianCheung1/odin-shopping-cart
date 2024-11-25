@@ -1,0 +1,24 @@
+.productcard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  text-align: center;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.productcard img {
+  width: 245px;
+  height: 250px;
+  border-radius: 5px; /* Optional: adds rounded corners */
+  margin-bottom: 10px; /* Space between image and title */
+}
+
+.productcard h1 {
+  font-size: 1.2rem;
+}
+
+.productcard p {
+  font-size: 1rem;
+}
