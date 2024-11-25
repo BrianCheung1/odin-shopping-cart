@@ -1,43 +1,17 @@
-import { useState, useEffect } from "react";
 import { ProductCard } from "./ProductCard";
 import "../css/products.css";
-
-const Products = () => {
-    const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState({})
-
-    useEffect(() => {
-        // Fetch products
-        fetch("https://fakestoreapi.com/products")
-            .then((res) => res.json())
-            .then((json) => {
-                console.log(json);
-                setProducts(json);
-            });
-    }, []);
-
-    // Function to add product to the cart
-    const addProductToCart = (productId, quantity) => {
-        setCart((prevCart) => {
-            const updatedCart = { ...prevCart };
-            if (updatedCart[productId]) {
-                // If the product is already in the cart, update the quantity
-                updatedCart[productId] += quantity;
-            } else {
-                // Otherwise, add the product with the specified quantity
-                updatedCart[productId] = quantity;
-            }
-            return updatedCart;
-        });
-    };
+import PropTypes from "prop-types"
 
 
+const Products = ({ products, addProductToCart, removeProductFromCart }) => {
     return (
         <div className="products">
             {products.map((product) => (
                 <ProductCard
                     key={product.id}
-                    onClick={() => { addProductToCart(product.id, 1) }}
+                    addProductToCart={addProductToCart }
+                    removeProductFromCart={removeProductFromCart}
+                    id={product.id}
                     title={product.title}
                     image={product.image}
                     price={product.price}
@@ -47,5 +21,11 @@ const Products = () => {
         </div>
     );
 };
+
+Products.propTypes = {
+    products: PropTypes.array.isRequired,
+    addProductToCart: PropTypes.func.isRequired,
+    removeProductFromCart: PropTypes.func.isRequired,
+}
 
 export default Products;
