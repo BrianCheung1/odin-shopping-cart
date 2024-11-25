@@ -1,12 +1,13 @@
-import { useEffect } from "react";
+import { useParams } from "react-router-dom"
+import { Home } from "./Home"
 import { NavBar } from "./NavBar"
+import { useState, useEffect } from "react"
 import Products from "./Products"
-import { useState } from "react";
-import Cart from "./Cart";
 
-export const Shop = () => {
+export const App = () => {
+    const { name } = useParams();  // Get the dynamic route parameter `name`
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState({})
+    const [cart, setCart] = useState({});
 
     useEffect(() => {
         // Fetch products
@@ -23,25 +24,22 @@ export const Shop = () => {
         setCart((prevCart) => {
             const updatedCart = { ...prevCart };
             if (updatedCart[productId]) {
-                // If the product is already in the cart, update the quantity
                 updatedCart[productId] += quantity;
             } else {
-                // Otherwise, add the product with the specified quantity
                 updatedCart[productId] = quantity;
             }
             return updatedCart;
         });
     };
 
+    // Function to remove product from the cart
     const removeProductFromCart = (productId, quantity) => {
         setCart((prevCart) => {
             const updatedCart = { ...prevCart };
             if (updatedCart[productId]) {
-                // If the product is already in the cart, update the quantity
                 updatedCart[productId] -= quantity;
-            } 
+            }
             if (updatedCart[productId] <= 0) {
-                // If the quantity becomes zero or less, remove the product from the cart
                 delete updatedCart[productId];
             }
             return updatedCart;
@@ -50,9 +48,12 @@ export const Shop = () => {
 
     return (
         <div>
-            <NavBar />
-            <Products products={products} addProductToCart={addProductToCart} removeProductFromCart={removeProductFromCart} />
-            <Cart cart={cart} />
+            <NavBar cart={cart} />
+            {name === undefined || name=== "home" ? (
+                <Home />  // Render Home if there's no `name` (i.e., for root path "/")
+            ) : (
+                <Products products={products} addProductToCart={addProductToCart} removeProductFromCart={removeProductFromCart} />
+            )}
         </div>
-    )
+    );
 }

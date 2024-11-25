@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom"
 import "../css/navbar.css"
+import Cart from "./Cart"
 
-export const NavBar = () => {
+export const NavBar = ({ cart }) => {
     return (
         <div className="navbar">
-            <Link to="/">Home</Link>
-            <Link to="/shop">Shop</Link>
+            <Link to="/home">Home</Link>
+            <Link to="/products">Shop</Link>
+            <Cart cart={cart} />
         </div>
     )
 }

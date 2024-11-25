@@ -1,17 +1,14 @@
-
-import { Home } from './components/Home';
-import { Shop } from './components/Shop';
+import { App } from './components/App';
 
 const routes = [
     {
         path: "/",
-        element: <Home />,
+        element: <App />, // This will trigger the App component for the root path
     },
     {
-        path: "shop",
-        element: <Shop />,
-    }
-
+        path: "/:name",  // Dynamic path for other routes
+        element: <App />,
+    },
 ]
 
 export default routes;

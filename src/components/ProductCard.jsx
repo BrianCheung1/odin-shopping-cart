@@ -1,10 +1,9 @@
 import PropTypes from "prop-types"
 import "../css/productcard.css"
 import { useState } from "react"
-export const ProductCard = ({ title, image, price, id, addProductToCart, removeProductFromCart }) => {
+export const ProductCard = ({ title, image, price, id, addProductToCart}) => {
 
     const [quantity, setQuantity] = useState(0)
-
 
     return (
         <div className="productcard">
@@ -27,4 +26,6 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    addProductToCart: PropTypes.func.isRequired,
 }
