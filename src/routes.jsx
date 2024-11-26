@@ -1,5 +1,4 @@
 import { App } from './components/App';
-
 const routes = [
     {
         path: "/",
@@ -9,6 +8,8 @@ const routes = [
         path: "/:name",  // Dynamic path for other routes
         element: <App />,
     },
+
+
 ]
 
 export default routes;

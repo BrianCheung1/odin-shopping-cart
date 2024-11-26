@@ -1,15 +1,16 @@
 import PropTypes from "prop-types"
 import "../css/productcard.css"
 import { useState } from "react"
-export const ProductCard = ({ title, image, price, id, addProductToCart}) => {
+export const ProductCard = ({ title, image, price, id, addProductToCart }) => {
 
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
 
     return (
         <div className="productcard">
             <img src={image} alt={title} />
-            <h1>{title}</h1>
             <p>${price.toFixed(2)}</p>
+            <h1>{title}</h1>
+
             <div className="add-to-cart">
                 <button onClick={() => setQuantity(prevQuantity => Math.max(0, prevQuantity - 1))}>-</button>
                 <p>{quantity}</p>

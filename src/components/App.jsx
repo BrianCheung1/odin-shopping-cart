@@ -48,7 +48,7 @@ export const App = () => {
 
     return (
         <div>
-            <NavBar cart={cart} />
+            <NavBar cart={cart} addProductToCart={addProductToCart} removeProductFromCart={removeProductFromCart} />
             {name === undefined || name=== "home" ? (
                 <Home />  // Render Home if there's no `name` (i.e., for root path "/")
             ) : (

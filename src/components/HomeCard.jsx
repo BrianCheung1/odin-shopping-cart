@@ -6,8 +6,8 @@ import "../css/homecard.css"
 export const HomeCard = () => {
     return (
         <div className="homecard">
-            <Link to="/shop"><img src={menClothingImage} alt="Men's Clothing" /></Link>
-            <Link to="/shop"><img src={womenClothingImage} alt="Female clothing" /></Link>
+            <Link to="/mens-clothing"><img src={menClothingImage} alt="Men's Clothing" /></Link>
+            <Link to="/womens-clothing"><img src={womenClothingImage} alt="Female clothing" /></Link>
         </div>
     );
 };
